@@ -42,8 +42,8 @@ char rxBuffer[MSGLEN];
 int main(void) {
     WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
 
-    P2REN |= BIT4; // pull up resistor on water level switch
-
+    //P2REN |= BIT3; // enable pull up resistor on p2.3
+    //P2OUT |= BIT3;
 
     // Initialize radio and SPI
     TI_CC_SPISetup();                         // Initialize SPI port
@@ -80,8 +80,9 @@ int main(void) {
 	_BIS_SR(GIE); // turn on interrupts. Initialization must be complete by this point
     while(1) {
     	if(water_level_request) {
-    		//_BIC_SR(GIE); 		// disable interrupts to avoid conflicts during processing
-    		txBuffer[2] = 1;//(P2IN & BIT4) ? VALID_LEVEL : ~VALID_LEVEL; // if the switch is high (open), turn on the pump.
+    		// Ideally, P2.3 should be pulled high. This is causing strange behavior on the pin
+    		//    that should be investigated.
+    		txBuffer[2] = (P2IN & BIT3) ? 0 : 1; // if the switch is low (open), turn on the pump
     		RFSendPacket(txBuffer, MSGLEN);
     		__delay_cycles(450000); // delay a few cycles. Note that this means requests that take place during
     								// a pump cycle will be ignored completely.

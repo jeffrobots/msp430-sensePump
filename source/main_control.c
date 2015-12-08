@@ -47,11 +47,6 @@ char WaterLevelValid(void);
 
 int main(void) {
     WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
-    /* Inputs
- 	P2DIR = BIT2;
- 	P1DIR = BIT3 | GDO0;
-     */
-    // Outputs
     P2DIR |= BIT3 | BIT4; // output to BLDC and LED
     //P2SEL |= BIT3;
     P2OUT &= ~BIT3; // make sure pump is off
@@ -139,7 +134,7 @@ __interrupt void PORT2_ISR()
     if (RFReceivePacket(rxBuffer,&len))
     {
         // Fetch packet from CC110
-		P2OUT |= BIT4;//(rxBuffer[1]) ? BIT4 : 0; // turn on an LED if the water level is valid
+		P2OUT |= (rxBuffer[1]) ? BIT4 : 0; // turn on an LED if the water level is valid
 		rx_water_level_data = 1; // set flag to indicate that sensor data has been received
      }
   }
