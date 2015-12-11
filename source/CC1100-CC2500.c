@@ -1,3 +1,10 @@
+// Note that the following code has been used directly as uplodated on the
+// TI website. No functional modifications have been made.
+// HOWEVER: some radio settings have been changed in order to more
+// suitable conform to sensePump project requirements.
+// --Jeff Baatz
+
+
 /* --COPYRIGHT--,BSD
  * Copyright (c) 2011, Texas Instruments Incorporated
  * All rights reserved.
@@ -40,12 +47,17 @@
 //  July 2006
 //  IAR Embedded Workbench v3.41
 //------------------------------------------------------------------------------
-
+//  Jeff Baatz:
+//  The following file can be modified in a variety of ways, most importantly in
+//  operating frequency by changing TI_CC_RF_FREQ. Individual radio settings can also
+//  be changed here, but the datasheet for the specific device should be consulted
+//  before making any changes, as not all values are valid.
+ 
 
 #include "include.h"
 #include "TI_CC_CC1100-CC2500.h"
 
-#define TI_CC_RF_FREQ  868                 // 315, 433, 868, 915, 2400
+#define TI_CC_RF_FREQ  915                 // 315, 433, 868, 915, 2400
 
 
 

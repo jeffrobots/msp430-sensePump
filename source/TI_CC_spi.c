@@ -1,3 +1,7 @@
+// Note that the following code has been used directly as uplodated on the
+// TI website. No modifications have been made for the application
+// sensePump.
+
 /* --COPYRIGHT--,BSD
  * Copyright (c) 2011, Texas Instruments Incorporated
  * All rights reserved.
@@ -50,7 +54,6 @@
 //------------------------------------------------------------------------------
 
 #include "include.h"
-//#include "TI_CC_spi.h"
 
 //------------------------------------------------------------------------------
 //  void TI_CC_SPISetup(void)
